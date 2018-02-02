@@ -4,7 +4,11 @@
   "description": "A basic server for learning how to AJAX",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "DEV=true nodemon app.js",
+    "api-dev": "API=true PORT=3001 DEV=true nodemon app.js",
+    "start": "node app.js",
+    "api": "API=true node app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/PortableStick/ajaxServer/issues"
   },
-  "homepage": "https://github.com/PortableStick/ajaxServer#readme"
+  "homepage": "https://github.com/PortableStick/ajaxServer#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.12"
+  }
 }

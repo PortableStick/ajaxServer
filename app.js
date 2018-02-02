@@ -1,20 +1,29 @@
 #! /usr/bin/env node
 
-const http = require('http');
-const port = process.argv[2] || 3000;
+const express = require('express');
+const app = express();
+const path = require('path');
 
-const server = http.createServer(requestHandler);
+const port = process.env.PORT || 3000;
+const api = process.env.API || false;
+const dev = process.env.DEV || false;
 
-server.listen(port, err => {
+const users = require('./users.json');
+
+app.get('/', (request, response) => {
+  if(api) response.send("API MODE");
+  response.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/users', (request, response) => {
+  response.json(users);
+});
+
+app.listen(port, err => {
   if(err) {
     return console.error(err);
   }
-
-  console.log(`Server is listening on port ${port}`);
-})
-
-function requestHandler(request, response) {
-
-}
-
-
+  if(dev) {
+    console.log(`[${new Date().toLocaleString('en-US', {hour: 'numeric', minute: 'numeric'})}] ${api ? 'API server' : 'Server'} listening on port ${port}`);
+  }
+});
