@@ -10,12 +10,36 @@ const dev = process.env.DEV || false;
 
 const users = require('./users.json');
 
+if(!api) {
+  app.use(express.static('.'));
+}
+
 app.get('/', (request, response) => {
-  if(api) response.send("API MODE");
+  if(api) {
+    console.log(`API MODE: ${api}`)
+    return response.send("API MODE");
+  }
   response.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// get users from same origin
 app.get('/users', (request, response) => {
+  response.set({
+    // disable cors
+    'Access-Control-Allow-Origin': '',
+    'Access-Control-Allow-Headers': ''
+  });
+  response.json(users);
+});
+
+// get users via JSONP
+app.get('/users.jsonp', (request, response) => {
+  response.jsonp(users);
+});
+
+// get users from a different domain with CORS enabled
+app.get('/cors/users', (request,response) => {
+  response.set({});
   response.json(users);
 });
 
