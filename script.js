@@ -1,5 +1,5 @@
-const FADEOUT_DELAY = 150;
-const FADEIN_DELAY = 100;
+const FADEOUT_DELAY = 200;
+const FADEIN_DELAY = 250;
 var FETCHING = false;
 
 $(function() {
@@ -53,6 +53,10 @@ function renderData(template, $target, data) {
 }
 
 function renderError(template, $target, jqXHR) {
-  $target.html(template(jqXHR));
+  var output = template(jqXHR);
+  $(output)
+    .hide()
+    .appendTo($target)
+    .fadeIn()
   FETCHING = false;
 }
