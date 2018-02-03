@@ -1,5 +1,5 @@
-const FADEOUT_DELAY = 200;
-const FADEIN_DELAY = 200;
+const FADEOUT_DELAY = 150;
+const FADEIN_DELAY = 100;
 var FETCHING = false;
 
 $(function() {

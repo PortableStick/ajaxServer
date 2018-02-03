@@ -1,26 +1,32 @@
 [
   {
     "name": "Walter White",
-    "occupation": "Meth cook"
+    "occupation": "Meth cook",
+    "img": "/images/walt.jpg"
   },
   {
     "name": "Hank Schreider",
-    "occupation": "DEA Agent"
+    "occupation": "DEA Agent",
+    "img": "/images/hank.jpg"
   },
   {
     "name": "Jessie Pinkman",
-    "occupation": "Meth cook"
+    "occupation": "Meth cook",
+    "img": "/images/jessie.jpg"
   },
   {
     "name": "Skyler White",
-    "occupation": "Business owner"
+    "occupation": "Business owner",
+    "img": "/images/skyler.jpg"
   },
   {
     "name": "Mike Ehrmantrout",
-    "occupation": "Business owner"
+    "occupation": "Business owner",
+    "img": "/images/mike.jpg"
   },
   {
     "name": "Saul Goodman",
-    "occupation": "Criminal lawyer"
+    "occupation": "Criminal lawyer",
+    "img": "/images/saul.jpg"
   }
 ]

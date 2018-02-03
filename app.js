@@ -40,7 +40,7 @@ app.get('/users.jsonp', (request, response) => {
 // get users from a different domain with CORS enabled
 app.get('/cors/users', (request,response) => {
   response.set({
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": "http://localhost:3000",
     "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
   });
   response.json(users);
