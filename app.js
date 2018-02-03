@@ -23,7 +23,7 @@ app.get('/', (request, response) => {
 });
 
 // get users from same origin
-app.get('/users', (request, response) => {
+app.get('/users.json', (request, response) => {
   response.set({
     // disable cors
     'Access-Control-Allow-Origin': '',
@@ -39,7 +39,8 @@ app.get('/users.jsonp', (request, response) => {
 
 // get users from a different domain with CORS enabled
 app.get('/cors/users', (request,response) => {
-  response.set({});
+  response.set({"Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"});
   response.json(users);
 });
 

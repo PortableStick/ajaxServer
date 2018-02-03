@@ -3,14 +3,31 @@
   <head>
     <meta charset="UTF-8">
     <title>Let's learn some AJAX</title>
+    <link rel="stylesheet" href="style.css"/>
   </head>
   <body>
     <h1>AJAX practice</h1>
     <button type="button" id="sameDomain">Get users from same domain</button>
-    <button type="button" id="jsonp">Get users via JSONP</button>
+    <button type="button" id="crossDomain">Get users from different domain</button>
+    <button type="button" id="jsonp">Get users from different domain via JSONP</button>
+    <button type="button" id="cors">Get users from different domain via CORS</button>
     <ul id="users">
 
     </ul>
+    <div id="error">
+
+    </div>
+    <template id="user-template">
+      <li class="user">
+        <div class="user-info">
+          <h2 class="user-name">{{name}}</h2>
+          <h4 class="user-occupation">{{occupation}}</h4>
+        </div>
+      </li>
+    </template>
+    <template id="error-template">
+
+    </template>
     <script
 			  src="http://code.jquery.com/jquery-3.3.1.min.js"
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
