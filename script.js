@@ -7,58 +7,38 @@ $(function() {
   var $corsButton = $('#cors');
   var $jsonpButton = $('#jsonp');
   var $usersList = $('#users');
+
   var userTemplate = Handlebars.compile($('#user-template').html());
+  var errorTemplate = Handlebars.compile($('#error-template').html());
+
   var successHandler = renderData.bind(this, userTemplate, $usersList);
+  var errorHandler = renderError.bind(this, errorTemplate, $usersList);
+
+  function sendRequest(url) {
+    return $.getJSON(url)
+      .then(successHandler, errorHandler);
+  }
 
   $sameDomainButton.click(e => {
     clearEach($usersList)
-      .then(() => $.getJSON('/users.json'))
-      .then(successHandler)
-      .catch(handleError);
+      .then(() => sendRequest('/users.json'))
   });
 
   $crossDomainButton.click(e => {
     clearEach($usersList)
-      .then(() => $.getJSON('http://localhost:3001/users.json'))
-      .then(successHandler)
-      .catch(handleError);
+      .then(() => sendRequest('http://localhost:3001/users.json'))
   });
 
   $jsonpButton.click(e => {
     clearEach($usersList)
-      .then(() => $.getJSON('http://localhost:3001/users.jsonp?callback=?'))
-      .then(successHandler)
-      .catch(handleError);
-
-      /****
-      // * long form
-      // *
-      $.ajax({
-        url: 'http://localhost:3001/jsonp/users',
-        dataType: 'jsonp',
-        jsonpCallback: 'callbackFunction'
-      })
-
-      function callbackFunction(response) {
-        console.log(response)
-      }
-
-      //long form ****/
+      .then(() => sendRequest('http://localhost:3001/users.jsonp?callback=?'))
   });
 
   $corsButton.click(e => {
     clearEach($usersList)
-      .then(() => $.getJSON('http://localhost:3001/cors/users'))
-      .then(successHandler)
-      .catch(handleError);
+      .then(() => sendRequest('http://localhost:3001/cors/users'))
   });
 });
-
-function handleError(err) {
-  console.log("Handle errrrrrrr")
-  console.log(err)
-  console.log(err.status)
-}
 
 function clearEach($target) {
   var children = $target.children().toArray().reverse();
@@ -81,4 +61,8 @@ function renderData(template, $target, data) {
         .delay(i * FADEIN_DELAY)
         .fadeIn();
     });
+}
+
+function renderError(template, $target, jqXHR) {
+  $target.html(template(jqXHR));
 }
