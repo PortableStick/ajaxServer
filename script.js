@@ -1,5 +1,6 @@
 const FADEOUT_DELAY = 200;
 const FADEIN_DELAY = 200;
+var FETCHING = false;
 
 $(function() {
   var $sameDomainButton = $('#sameDomain');
@@ -15,41 +16,28 @@ $(function() {
   var errorHandler = renderError.bind(this, errorTemplate, $usersList);
 
   function sendRequest(url) {
-    return $.getJSON(url)
+    if(FETCHING) return;
+    FETCHING = true;
+    return clearEach($usersList)
+      .then(() => $.getJSON(url))
       .then(successHandler, errorHandler);
   }
 
-  $sameDomainButton.click(e => {
-    clearEach($usersList)
-      .then(() => sendRequest('/users.json'))
-  });
+  $sameDomainButton.click(e => sendRequest('/users.json'));
 
-  $crossDomainButton.click(e => {
-    clearEach($usersList)
-      .then(() => sendRequest('http://localhost:3001/users.json'))
-  });
+  $crossDomainButton.click(e => sendRequest('http://localhost:3001/users.json'));
 
-  $jsonpButton.click(e => {
-    clearEach($usersList)
-      .then(() => sendRequest('http://localhost:3001/users.jsonp?callback=?'))
-  });
+  $jsonpButton.click(e => sendRequest('http://localhost:3001/users.jsonp?callback=?'));
 
-  $corsButton.click(e => {
-    clearEach($usersList)
-      .then(() => sendRequest('http://localhost:3001/cors/users'))
-  });
+  $corsButton.click(e => sendRequest('http://localhost:3001/cors/users'));
 });
 
 function clearEach($target) {
   var children = $target.children().toArray().reverse();
-  var events = $.map(children, (child, i) => $(child).delay(i * FADEOUT_DELAY).fadeOut().promise())
+  var events = children.map((child, i) => $(child).delay(i * FADEOUT_DELAY).fadeOut().promise());
 
-  return new Promise((resolve, reject) => {
-    $.when(...events)
+  return Promise.all(events)
       .then(() => $target.html(''))
-      .then(resolve)
-      .catch(reject)
-  })
 }
 
 function renderData(template, $target, data) {
@@ -61,8 +49,10 @@ function renderData(template, $target, data) {
         .delay(i * FADEIN_DELAY)
         .fadeIn();
     });
+    FETCHING = false;
 }
 
 function renderError(template, $target, jqXHR) {
   $target.html(template(jqXHR));
+  FETCHING = false;
 }
