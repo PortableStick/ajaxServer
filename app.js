@@ -3,6 +3,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const sassMiddleware = require('node-sass-middleware');
 
 const port = process.env.PORT || 3000;
 const api = process.env.API || false;
@@ -11,6 +12,13 @@ const mainUrl = process.env.MAIN_URL || "http://localhost:3000";
 const apiUrl = process.env.API_URL || "http://localhost:3001";
 
 const cats = require('./cats.json');
+
+app.use(sassMiddleware({
+  src: __dirname,
+  dest: __dirname,
+  debug: dev,
+  outputStyle: 'compressed'
+}));
 
 app.use(express.static('.'));
 app.set('view engine', 'pug');
