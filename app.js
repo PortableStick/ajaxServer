@@ -13,7 +13,7 @@ const apiUrl = process.env.API_URL || "http://localhost:3001";
 const cats = require('./cats.json');
 
 app.use(express.static('.'));
-app.set('view engine', 'pug')
+app.set('view engine', 'pug');
 
 app.get('/', (request, response) => {
   if(api) {
@@ -46,6 +46,20 @@ app.get('/cors/cats.json', (request,response) => {
   });
   response.json(cats);
 });
+
+app.get('/cat/:id/json', (request, response) => {
+  var id = request.params.id;
+  var cat = cats.filter(cat => cat.id === id)[0];
+  if(!cat) return response.status(404).json({error: "Cat does not exist"})
+  response.json(cat);
+});
+
+app.get('/cat/:id', (request, response) => {
+  var id = request.params.id;
+  var cat = cats.filter(cat => cat.id === id)[0];
+  if(!cat) return response.render(path.join(__dirname, '404.pug'));
+  response.render(path.join(__dirname, 'cat.pug'), { ...cat });
+})
 
 app.listen(port, err => {
   if(err) {

@@ -20,7 +20,7 @@ html(lang='en')
           .cat-text
             h2.cat-name.text-shadow-black {{name}}
             h4.cat-headline.text-shadow-black {{headline}}
-            a.read-more(href=`#{apiUrl}/{{linkify name}}` target="_blank") Read More
+            a.read-more(href=`{{linkify id}}` target="_blank") Read More
     template#error-template
       li.error-message.text-mono
         i.fas.fa-exclamation-triangle

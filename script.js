@@ -4,8 +4,8 @@ function init(apiUrl) {
   const FADEIN_DELAY = 250;
   var FETCHING = false;
 
-  Handlebars.registerHelper('linkify', name => name.replace(' ', '_'));
-  Handlebars.registerHelper('urlify', image => `${apiUrl}/images/${image}`);
+  Handlebars.registerHelper('linkify', id => `/cat/${id}`);
+  Handlebars.registerHelper('urlify', image => `/images/${image}`);
 
   var $sameDomainButton = $('#sameDomain');
   var $crossDomainButton = $('#crossDomain');

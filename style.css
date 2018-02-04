@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .text-roboto {
   font-family: Roboto;
 }
@@ -47,8 +51,7 @@ body {
 
 .cat-text {
   position: absolute;
-  padding-left: 20px;
-  padding-bottom: 10px;
+  padding: 0 20px 10px;
   font-size: .9em;
   background-color: rgba(0,0,0,0.5);
   width: 100%;
