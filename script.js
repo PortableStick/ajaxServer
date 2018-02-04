@@ -5,34 +5,35 @@ function init(apiUrl) {
   var FETCHING = false;
 
   Handlebars.registerHelper('linkify', name => name.replace(' ', '_'));
+  Handlebars.registerHelper('urlify', image => `${apiUrl}/images/${image}`);
 
   var $sameDomainButton = $('#sameDomain');
   var $crossDomainButton = $('#crossDomain');
   var $corsButton = $('#cors');
   var $jsonpButton = $('#jsonp');
-  var $usersList = $('#users');
+  var $catsList = $('#cats');
 
-  var userTemplate = Handlebars.compile($('#user-template').html());
+  var catTemplate = Handlebars.compile($('#cat-template').html());
   var errorTemplate = Handlebars.compile($('#error-template').html());
 
-  var successHandler = renderData.bind(this, userTemplate, $usersList);
-  var errorHandler = renderError.bind(this, errorTemplate, $usersList);
+  var successHandler = renderData.bind(this, catTemplate, $catsList);
+  var errorHandler = renderError.bind(this, errorTemplate, $catsList);
 
   function sendRequest(url) {
     if(FETCHING) return;
     FETCHING = true;
-    return clearEach($usersList)
+    return clearEach($catsList)
       .then(() => $.getJSON(url))
       .then(successHandler, errorHandler);
   }
 
-  $sameDomainButton.click(e => sendRequest('/users.json'));
+  $sameDomainButton.click(e => sendRequest('/cats.json'));
 
-  $crossDomainButton.click(e => sendRequest(`${apiUrl}/users.json`));
+  $crossDomainButton.click(e => sendRequest(`${apiUrl}/cats.json`));
 
-  $jsonpButton.click(e => sendRequest(`${apiUrl}/users.jsonp?callback=?`));
+  $jsonpButton.click(e => sendRequest(`${apiUrl}/cats.jsonp?callback=?`));
 
-  $corsButton.click(e => sendRequest(`${apiUrl}/cors/users.json`));
+  $corsButton.click(e => sendRequest(`${apiUrl}/cors/cats.json`));
 
   function clearEach($target) {
     var children = $target.children().toArray().reverse();

@@ -21,31 +21,31 @@ body {
   margin-bottom: 23px;
 }
 
-#users {
+#cats {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.user {
+.cat {
   color: white;
   margin: 10px 20px;
   overflow: hidden;
 }
 
-.user:hover .user-text {
+.cat:hover .cat-text {
   transform: translateY(0);
 }
 
-.user-info {
+.cat-info {
   width: 25vw;
   height: 25vw;
   position: relative;
   overflow: hidden;
 }
 
-.user-text {
+.cat-text {
   position: absolute;
   padding-left: 20px;
   padding-bottom: 10px;
@@ -127,4 +127,12 @@ body {
   padding: 20px;
   margin: 0 auto;
   width: 70em;
+}
+
+.fa-exclamation-triangle:before {
+  content: "\f071";
+}
+
+.fa-exclamation-triangle {
+  margin-right: 7px;
 }

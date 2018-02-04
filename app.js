@@ -7,14 +7,13 @@ const path = require('path');
 const port = process.env.PORT || 3000;
 const api = process.env.API || false;
 const dev = process.env.DEV || false;
+const mainUrl = process.env.MAIN_URL || "http://localhost:3000";
 const apiUrl = process.env.API_URL || "http://localhost:3001";
 
-const users = require('./users.json');
+const cats = require('./cats.json');
 
-if(!api) {
-  app.use(express.static('.'));
-  app.set('view engine', 'pug')
-}
+app.use(express.static('.'));
+app.set('view engine', 'pug')
 
 app.get('/', (request, response) => {
   if(api) {
@@ -24,28 +23,28 @@ app.get('/', (request, response) => {
   response.render(path.join(__dirname, 'index.pug'), { apiUrl });
 });
 
-// get users from same origin
-app.get('/users.json', (request, response) => {
+// get cats from same origin
+app.get('/cats.json', (request, response) => {
   response.set({
     // disable cors
     'Access-Control-Allow-Origin': 'notallowed.donotenter',
     'Access-Control-Allow-Headers': ''
   });
-  response.json(users);
+  response.json(cats);
 });
 
-// get users via JSONP
-app.get('/users.jsonp', (request, response) => {
-  response.jsonp(users);
+// get cats via JSONP
+app.get('/cats.jsonp', (request, response) => {
+  response.jsonp(cats);
 });
 
-// get users from a different domain with CORS enabled
-app.get('/cors/users.json', (request,response) => {
+// get cats from a different domain with CORS enabled
+app.get('/cors/cats.json', (request,response) => {
   response.set({
-    "Access-Control-Allow-Origin": "http://localhost:3000",
+    "Access-Control-Allow-Origin": mainUrl,
     "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
   });
-  response.json(users);
+  response.json(cats);
 });
 
 app.listen(port, err => {

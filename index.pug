@@ -4,7 +4,8 @@ html(lang='en')
     meta(charset='UTF-8')
     title Let's learn some AJAX
     link(href='https://fonts.googleapis.com/css?family=PT+Mono|Rammetto+One|Roboto', rel='stylesheet')
-    link(rel='stylesheet', href='style.css')
+    link(href='fa-solid.min.css', rel='stylesheet')
+    link(href='style.css', rel='stylesheet')
   body
     h1.title.text-rammetto.text-shadow A  J  A  X
     .container.text-roboto
@@ -12,17 +13,18 @@ html(lang='en')
       button#crossDomain.btn.shadow(type='button') Cross Origin
       button#jsonp.btn.shadow(type='button') JSONP
       button#cors.btn.shadow(type='button') CORS
-    ul#users
-    template#user-template
-      li.user.text-roboto.shadow
-        .user-info(style='background: url({{img}}) center / cover no-repeat;')
-          .user-text
-            h2.user-name.text-shadow-black {{name}}
-            h4.user-occupation.text-shadow-black {{occupation}}
-            a.read-more(href='http://breakingbad.wikia.com/wiki/{{linkify name}}' target="_blank") Read More
+    ul#cats
+    template#cat-template
+      li.cat.text-roboto.shadow
+        .cat-info(style='background: url({{urlify image}}) center / cover no-repeat;')
+          .cat-text
+            h2.cat-name.text-shadow-black {{name}}
+            h4.cat-headline.text-shadow-black {{headline}}
+            a.read-more(href=`#{apiUrl}/{{linkify name}}` target="_blank") Read More
     template#error-template
       li.error-message.text-mono
-        | Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at #{apiUrl}/users.json. (Reason: CORS header ‘Access-Control-Allow-Origin’ does not match ‘notallowed.donotenter’).
+        i.fas.fa-exclamation-triangle
+        | Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at #{apiUrl}/cats.json. (Reason: CORS header ‘Access-Control-Allow-Origin’ does not match ‘notallowed.donotenter’).
     script(src='http://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
     script(src='handlebars-v4.0.11.js')
     script(src='script.js')
