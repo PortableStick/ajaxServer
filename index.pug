@@ -1,0 +1,31 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Let's learn some AJAX
+    link(href='https://fonts.googleapis.com/css?family=PT+Mono|Rammetto+One|Roboto', rel='stylesheet')
+    link(rel='stylesheet', href='style.css')
+  body
+    h1.title.text-rammetto.text-shadow A  J  A  X
+    .container.text-roboto
+      button#sameDomain.btn.shadow(type='button') Same Origin
+      button#crossDomain.btn.shadow(type='button') Cross Origin
+      button#jsonp.btn.shadow(type='button') JSONP
+      button#cors.btn.shadow(type='button') CORS
+    ul#users
+    template#user-template
+      li.user.text-roboto.shadow
+        .user-info(style='background: url({{img}}) center / cover no-repeat;')
+          .user-text
+            h2.user-name.text-shadow-black {{name}}
+            h4.user-occupation.text-shadow-black {{occupation}}
+            a.read-more(href='http://breakingbad.wikia.com/wiki/{{linkify name}}') Read More
+    template#error-template
+      li.error-message.text-mono
+        | Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at http://localhost:3001/users.json. (Reason: CORS header ‘Access-Control-Allow-Origin’ does not match ‘’).
+    script(src='http://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
+    script(src='handlebars-v4.0.11.js')
+      <
+    script(src='script.js')
+    // <script src="http://localhost:3001/users.jsonp"></script>
+

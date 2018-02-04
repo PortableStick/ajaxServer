@@ -12,6 +12,7 @@ const users = require('./users.json');
 
 if(!api) {
   app.use(express.static('.'));
+  app.set('view engine', 'pug')
 }
 
 app.get('/', (request, response) => {
@@ -19,7 +20,7 @@ app.get('/', (request, response) => {
     console.log(`API MODE: ${api}`)
     return response.send("API MODE");
   }
-  response.sendFile(path.join(__dirname, 'index.html'));
+  response.render(path.join(__dirname, 'index.pug'));
 });
 
 // get users from same origin
