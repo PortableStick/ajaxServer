@@ -22,10 +22,8 @@ html(lang='en')
             a.read-more(href='http://breakingbad.wikia.com/wiki/{{linkify name}}' target="_blank") Read More
     template#error-template
       li.error-message.text-mono
-        | Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at http://localhost:3001/users.json. (Reason: CORS header ‘Access-Control-Allow-Origin’ does not match ‘’).
+        | Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at #{apiUrl}/users.json. (Reason: CORS header ‘Access-Control-Allow-Origin’ does not match ‘notallowed.donotenter’).
     script(src='http://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
     script(src='handlebars-v4.0.11.js')
-      <
     script(src='script.js')
-    // <script src="http://localhost:3001/users.jsonp"></script>
-
+    script init("#{apiUrl}")

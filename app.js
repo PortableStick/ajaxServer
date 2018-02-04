@@ -7,6 +7,7 @@ const path = require('path');
 const port = process.env.PORT || 3000;
 const api = process.env.API || false;
 const dev = process.env.DEV || false;
+const apiUrl = process.env.API_URL || "http://localhost:3001";
 
 const users = require('./users.json');
 
@@ -20,14 +21,14 @@ app.get('/', (request, response) => {
     console.log(`API MODE: ${api}`)
     return response.send("API MODE");
   }
-  response.render(path.join(__dirname, 'index.pug'));
+  response.render(path.join(__dirname, 'index.pug'), { apiUrl });
 });
 
 // get users from same origin
 app.get('/users.json', (request, response) => {
   response.set({
     // disable cors
-    'Access-Control-Allow-Origin': '',
+    'Access-Control-Allow-Origin': 'notallowed.donotenter',
     'Access-Control-Allow-Headers': ''
   });
   response.json(users);
@@ -39,7 +40,7 @@ app.get('/users.jsonp', (request, response) => {
 });
 
 // get users from a different domain with CORS enabled
-app.get('/cors/users', (request,response) => {
+app.get('/cors/users.json', (request,response) => {
   response.set({
     "Access-Control-Allow-Origin": "http://localhost:3000",
     "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"

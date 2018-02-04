@@ -1,10 +1,11 @@
-const FADEOUT_DELAY = 200;
-const FADEIN_DELAY = 250;
-var FETCHING = false;
+function init(apiUrl) {
 
-Handlebars.registerHelper('linkify', name => name.replace(' ', '_'));
+  const FADEOUT_DELAY = 200;
+  const FADEIN_DELAY = 250;
+  var FETCHING = false;
 
-$(function() {
+  Handlebars.registerHelper('linkify', name => name.replace(' ', '_'));
+
   var $sameDomainButton = $('#sameDomain');
   var $crossDomainButton = $('#crossDomain');
   var $corsButton = $('#cors');
@@ -27,38 +28,38 @@ $(function() {
 
   $sameDomainButton.click(e => sendRequest('/users.json'));
 
-  $crossDomainButton.click(e => sendRequest('http://localhost:3001/users.json'));
+  $crossDomainButton.click(e => sendRequest(`${apiUrl}/users.json`));
 
-  $jsonpButton.click(e => sendRequest('http://localhost:3001/users.jsonp?callback=?'));
+  $jsonpButton.click(e => sendRequest(`${apiUrl}/users.jsonp?callback=?`));
 
-  $corsButton.click(e => sendRequest('http://localhost:3001/cors/users'));
-});
+  $corsButton.click(e => sendRequest(`${apiUrl}/cors/users.json`));
 
-function clearEach($target) {
-  var children = $target.children().toArray().reverse();
-  var events = children.map((child, i) => $(child).delay(i * FADEOUT_DELAY).fadeOut().promise());
+  function clearEach($target) {
+    var children = $target.children().toArray().reverse();
+    var events = children.map((child, i) => $(child).delay(i * FADEOUT_DELAY).fadeOut().promise());
 
-  return Promise.all(events)
-      .then(() => $target.html(''))
-}
+    return Promise.all(events)
+        .then(() => $target.html(''))
+  }
 
-function renderData(template, $target, data) {
-    data.forEach((datum, i) => {
-      var output = template(datum);
-      $(output)
-        .hide()
-        .appendTo($target)
-        .delay(i * FADEIN_DELAY)
-        .fadeIn();
-    });
+  function renderData(template, $target, data) {
+      data.forEach((datum, i) => {
+        var output = template(datum);
+        $(output)
+          .hide()
+          .appendTo($target)
+          .delay(i * FADEIN_DELAY)
+          .fadeIn();
+      });
+      FETCHING = false;
+  }
+
+  function renderError(template, $target, jqXHR) {
+    var output = template(jqXHR);
+    $(output)
+      .hide()
+      .appendTo($target)
+      .fadeIn()
     FETCHING = false;
-}
-
-function renderError(template, $target, jqXHR) {
-  var output = template(jqXHR);
-  $(output)
-    .hide()
-    .appendTo($target)
-    .fadeIn()
-  FETCHING = false;
+  }
 }
