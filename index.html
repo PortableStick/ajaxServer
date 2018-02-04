@@ -18,12 +18,12 @@
 
     </ul>
     <template id="user-template">
-      <li class="user text-roboto">
-        <div class="user-info">
-          <img src="{{img}}" alt="Image of {{name}}" class="img"/>
+      <li class="user text-roboto shadow">
+        <div class="user-info" style="background: url({{img}}) center / cover no-repeat;">
           <div class="user-text">
             <h2 class="user-name text-shadow-black">{{name}}</h2>
             <h4 class="user-occupation text-shadow-black">{{occupation}}</h4>
+            <a href="http://breakingbad.wikia.com/wiki/{{linkify name}}" class="read-more">Read More</a>
           </div>
         </div>
       </li>

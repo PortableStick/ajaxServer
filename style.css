@@ -29,21 +29,42 @@ body {
 }
 
 .user {
-  width: 25%;
   color: white;
   margin: 10px 20px;
   overflow: hidden;
 }
 
+.user:hover .user-text {
+  transform: translateY(0);
+}
+
 .user-info {
-  width: 100%;
+  width: 25vw;
+  height: 25vw;
+  position: relative;
+  overflow: hidden;
 }
 
 .user-text {
   position: absolute;
-  margin-top: -80px;
   padding-left: 20px;
-  font-size: .7em;
+  padding-bottom: 10px;
+  font-size: .9em;
+  background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  bottom: 0;
+  transform: translateY(calc(20px + 0.9em));
+  transition: 0.3s;
+}
+
+.read-more {
+  padding: 0 0 10px 0;
+  text-decoration: none;
+  color: white;
+}
+
+.read-more:visited {
+  color: white;
 }
 
 .container {
@@ -98,10 +119,6 @@ body {
 
 #cors {
   background-color: #DA4955;
-}
-
-.img {
-  width: 100%;
 }
 
 .error-message {

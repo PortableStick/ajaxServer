@@ -2,6 +2,8 @@ const FADEOUT_DELAY = 200;
 const FADEIN_DELAY = 250;
 var FETCHING = false;
 
+Handlebars.registerHelper('linkify', name => name.replace(' ', '_'));
+
 $(function() {
   var $sameDomainButton = $('#sameDomain');
   var $crossDomainButton = $('#crossDomain');
