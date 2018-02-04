@@ -19,7 +19,7 @@ html(lang='en')
           .user-text
             h2.user-name.text-shadow-black {{name}}
             h4.user-occupation.text-shadow-black {{occupation}}
-            a.read-more(href='http://breakingbad.wikia.com/wiki/{{linkify name}}') Read More
+            a.read-more(href='http://breakingbad.wikia.com/wiki/{{linkify name}}' target="_blank") Read More
     template#error-template
       li.error-message.text-mono
         | Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at http://localhost:3001/users.json. (Reason: CORS header ‘Access-Control-Allow-Origin’ does not match ‘’).
