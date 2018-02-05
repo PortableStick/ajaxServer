@@ -1,7 +1,8 @@
 template#cat-template
   li.cat.text-roboto.shadow
-    .cat-info(style='background: url({{urlify image}}) center / cover no-repeat;')
-      .cat-text
-        h2.cat-name.text-shadow-black {{name}}
-        h4.cat-headline.text-shadow-black {{headline}}
-        a.read-more(href=`{{linkify id}}` target="_blank") Read More
+    a.read-more(href=`{{linkify id}}` target="_blank")
+      .cat-info(style='background: url({{urlify image}}) center / cover no-repeat;')
+        .cat-text
+          h2.cat-name.text-shadow-black {{name}}
+          h4.cat-headline.text-shadow-black {{headline}}
+          p Read More
