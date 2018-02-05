@@ -1,0 +1,21 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 2em;
+  background-color: $footer-bg;
+  margin: 0;
+  color: $footer-text-color;
+  padding: 10px 10px 30px;
+  font-size: 1em;
+
+  a {
+    text-decoration: none;
+    color: $footer-text-color;
+
+    &:visited {
+      color: $footer-text-color;
+    }
+  }
+}
+

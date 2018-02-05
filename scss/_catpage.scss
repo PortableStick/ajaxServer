@@ -1,0 +1,98 @@
+.bio-title {
+  @extend %title;
+}
+
+.like-title {
+  @extend %title;
+}
+
+.breed-title {
+  @extend %title;
+}
+
+.cat-bio {
+  @extend %profile-content;
+}
+
+.cat-breed {
+  @extend %profile-content;
+}
+
+.cat-likes {
+  @extend %profile-content;
+}
+
+.header {
+  width: 100%;
+  background-color: $header-bg;
+  border-bottom: 1px solid $header-border-color;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 10px 30px;
+  box-shadow: 0px 22px 28px -11px $black-75;
+  height: 215px;
+
+  .cat-image {
+    max-width: 200px;
+    border-radius: 50%;
+    margin-left: 50px;
+    border: 3px solid $cat-image-border-color;
+  }
+
+  .text {
+    text-align: right;
+    margin-right: 100px;
+    color: $header-text-color;
+
+    .cat-headline {
+      position:relative;
+      margin: 0;
+      text-align: center;
+
+      &:before {
+        content: "“";
+        font-size: 5em;
+        position: absolute;
+        left: 16px;
+        top: -20px;
+        opacity: 0.3;
+      }
+
+      &:after {
+        content: "”";
+        font-size: 5em;
+        position: absolute;
+        right: -36px;
+        top: -20px;
+        opacity: 0.3;
+      }
+    }
+
+    .cat-name {
+      font-size: 3.3em;
+    }
+  }
+}
+
+.cat-info {
+  width: 25vw;
+  height: 25vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.cat-text {
+  position: absolute;
+  padding: 0 20px 10px;
+  font-size: .9em;
+  background-color: $cat-text-bg;
+  width: 100%;
+  bottom: 0;
+  transform: translateY(calc(20px + 0.9em));
+  transition: 0.3s;
+}
+
+.cat-likes {
+  list-style: none;
+}

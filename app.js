@@ -14,21 +14,22 @@ const apiUrl = process.env.API_URL || "http://localhost:3001";
 const cats = require('./cats.json');
 
 app.use(sassMiddleware({
-  src: __dirname,
-  dest: __dirname,
+  src: path.resolve(__dirname, 'scss'),
+  dest: path.resolve(__dirname, 'public'),
   debug: dev,
   outputStyle: 'compressed'
 }));
 
-app.use(express.static('.'));
+app.use(express.static('./public'));
 app.set('view engine', 'pug');
+app.set('views', path.resolve(__dirname, 'views'));
 
 app.get('/', (request, response) => {
   if(api) {
     console.log(`API MODE: ${api}`)
     return response.send("API MODE");
   }
-  response.render(path.join(__dirname, 'index.pug'), { apiUrl });
+  response.render('index.pug', { apiUrl });
 });
 
 // get cats from same origin
@@ -65,8 +66,8 @@ app.get('/cat/:id/json', (request, response) => {
 app.get('/cat/:id', (request, response) => {
   var id = request.params.id;
   var cat = cats.filter(cat => cat.id === id)[0];
-  if(!cat) return response.render(path.join(__dirname, '404.pug'));
-  response.render(path.join(__dirname, 'cat.pug'), { ...cat });
+  if(!cat) return response.render('404.pug');
+  response.render('cat.pug', { ...cat });
 })
 
 app.listen(port, err => {

@@ -1,0 +1,17 @@
+.fa-exclamation-triangle {
+
+  &:before {
+    content: "\f071";
+  }
+
+  margin-right: 7px;
+}
+
+.fa-github {
+
+  &:before {
+    content: "\f09b";
+  }
+
+  margin-right: 10px;
+}
