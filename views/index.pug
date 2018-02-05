@@ -8,19 +8,7 @@ body
         button#jsonp.btn.shadow(type='button') JSONP
         button#cors.btn.shadow(type='button') CORS
       ul#cats.row
-      template#cat-template
-        li.cat.text-roboto.shadow
-          .cat-info(style='background: url({{urlify image}}) center / cover no-repeat;')
-            .cat-text
-              h2.cat-name.text-shadow-black {{name}}
-              h4.cat-headline.text-shadow-black {{headline}}
-              a.read-more(href=`{{linkify id}}` target="_blank") Read More
-      template#error-template
-        li.error-message.text-mono
-          i.fas.fa-exclamation-triangle
-          | Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at #{apiUrl}/cats.json. (Reason: CORS header ‘Access-Control-Allow-Origin’ does not match ‘notallowed.donotenter’).
-    script(src='http://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
-    script(src='handlebars-v4.0.11.js')
-    script(src='script.js')
-    script init("#{apiUrl}")
+      include includes/catTemplate.pug
+      include includes/errorTemplate.pug
+      include includes/scripts.pug
     include includes/footer.pug
