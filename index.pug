@@ -1,12 +1,5 @@
-doctype html
-html(lang='en')
-  head
-    meta(charset='UTF-8')
-    title Let's learn some AJAX
-    link(href='https://fonts.googleapis.com/css?family=PT+Mono|Rammetto+One|Roboto', rel='stylesheet')
-    link(href='fa-solid.min.css', rel='stylesheet')
-    link(href='style.css', rel='stylesheet')
-  body
+include includes/head.pug
+body
     .container-fluid.background.bottom-space
       h1.main-title.text-rammetto.text-shadow A  J  A  X
       .row.text-roboto.button-container
@@ -30,4 +23,4 @@ html(lang='en')
     script(src='handlebars-v4.0.11.js')
     script(src='script.js')
     script init("#{apiUrl}")
-    include footer.pug
+    include includes/footer.pug
