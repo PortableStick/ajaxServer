@@ -4,6 +4,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const sassMiddleware = require('node-sass-middleware');
+const minify = require('express-minify');
+const compression = require('compression');
 
 const port = process.env.PORT || 3000;
 const api = process.env.API || false;
@@ -19,10 +21,11 @@ app.use(sassMiddleware({
   debug: dev,
   outputStyle: 'compressed'
 }));
-
-app.use(express.static('./public'));
 app.set('view engine', 'pug');
 app.set('views', path.resolve(__dirname, 'views'));
+app.use(compression());
+app.use(minify());
+app.use(express.static('./public'));
 
 app.get('/', (request, response) => {
   if(api) {
