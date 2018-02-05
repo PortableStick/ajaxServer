@@ -30,10 +30,18 @@ app.use(express.static('./public'));
 app.get('/', (request, response) => {
   if(api) {
     console.log(`API MODE: ${api}`)
-    return response.send("API MODE");
+    return response.render('api.pug', {title: "Cat dating API", apiUrl});
   }
   response.render('index.pug', { apiUrl, title: "Learn AJAX with cat dating!" });
 });
+
+function allowCors(request, response, next) {
+    response.set({
+    "Access-Control-Allow-Origin": mainUrl,
+    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+  });
+  next();
+}
 
 // get cats from same origin
 app.get('/cats.json', (request, response) => {
@@ -51,15 +59,12 @@ app.get('/cats.jsonp', (request, response) => {
 });
 
 // get cats from a different domain with CORS enabled
-app.get('/cors/cats.json', (request,response) => {
-  response.set({
-    "Access-Control-Allow-Origin": mainUrl,
-    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
-  });
+app.get('/cors/cats.json', allowCors, (request,response) => {
   response.json(cats);
 });
 
-app.get('/cat/:id/json', (request, response) => {
+app.get('/cat/:id/json', allowCors, (request, response) => {
+  if(!api) return response.status(403).end();
   var id = request.params.id;
   var cat = cats.filter(cat => cat.id === id)[0];
   if(!cat) return response.status(404).json({error: "Cat does not exist"})
@@ -67,6 +72,7 @@ app.get('/cat/:id/json', (request, response) => {
 });
 
 app.get('/cat/:id', (request, response) => {
+  if(api) return response.status(403).end();
   var id = request.params.id;
   var cat = cats.filter(cat => cat.id === id)[0];
   if(!cat) return response.render('404.pug', {title: "Cat not found!"});

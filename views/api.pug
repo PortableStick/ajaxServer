@@ -1,0 +1,37 @@
+include includes/head.pug
+body
+  .container
+      h1.api-title Cat dating API v1
+      h2.cat-object Cat object
+      p.cat-object-description All non-error responses will include one or more cat objects. The object's parameters are described below:
+      dl.cat-object-parameters
+        dt.cat-object-parameter name
+        dd.cat-object-definition A string containing the cat's name
+        dt.cat-object-parameter headline
+        dd.cat-object-definition A string containing a headline for the cat's profile, meant to be short and attention grabbing
+        dt.cat-object-parameter bio
+        dd.cat-object-definition A string containing the cat's bio. This is meant to be longer than the headline, allowing for more details on the cat's personality
+        dt.cat-object-parameter likes
+        dd.cat-object-definition An array of strings listing out things the cat enjoys in particular. Has an arbitrary length, but all entries are strings.
+        dt.cat-object-parameter breed
+        dd.cat-object-definition A string containing the cat's breed
+        dt.cat-object-parameter id
+        dd.cat-object-definition A string containing the cat's randomly generated id number. This is not meant to be user facing, but can be used to retrieve a specific cat. It is an 8 digit hexadecimal number.
+      pre.cat-object-example
+        | {
+        |   "name": "Garfield",
+        |   "headline": "I love lasagna aren't I zany? lol",
+        |   "bio": "I am an unaging inferno of despair and horror. My entire life consists of torturing my owner, John, and his dog Odie. I do nothing but sleep, eat, and complain, making me completely useless and a disappointment to my evolutionary anscestors",
+        |   "likes": ["sleeping", "lasagna", "walking upright for some reason"],
+        |   "breed": "Orange blob",
+        |   "id": "00000000"
+        | }
+      h2.api-endpoint #[span.api-method GET] #{apiUrl}/cats.json
+      p.description Returns a list of all cats in the database in JSON format as an array of cat objects. Does not allow cross-origin requests.
+      h2.api-endpoint #[span.api-method GET] #{apiUrl}/cats.jsonp
+      p.description Returns a list of all cats in the database in JSON format with padding as an array of cat objects.
+      h2.api-endpoint #[span.api-method GET] #{apiUrl}/cat/:id/json
+      p.description Returns a single cat specified by the id number in JSON format.  Explicitly allows cross-origin requests.
+      h2.api-endpoint #[span.api-method GET] #{apiUrl}/cors/cats.json
+      p.description Returns a list of all cats in the database in JSON format as an array of cat objects.  Explicitly allows cross-origin requests.
+
