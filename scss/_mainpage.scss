@@ -66,8 +66,8 @@
 }
 
 .error-message {
-  background-color: $error-bg;
-  color: $error-text-color;
+  background-color: $cors-error-bg;
+  color: $cors-error-text-color;
   padding: 20px;
   margin: 0 auto;
   width: 70em;

@@ -32,7 +32,7 @@ app.get('/', (request, response) => {
     console.log(`API MODE: ${api}`)
     return response.send("API MODE");
   }
-  response.render('index.pug', { apiUrl });
+  response.render('index.pug', { apiUrl, title: "Learn AJAX with cat dating!" });
 });
 
 // get cats from same origin
@@ -69,8 +69,8 @@ app.get('/cat/:id/json', (request, response) => {
 app.get('/cat/:id', (request, response) => {
   var id = request.params.id;
   var cat = cats.filter(cat => cat.id === id)[0];
-  if(!cat) return response.render('404.pug');
-  response.render('cat.pug', { ...cat });
+  if(!cat) return response.render('404.pug', {title: "Cat not found!"});
+  response.render('cat.pug', { ...cat, title: `Meet ${cat.name}` });
 })
 
 app.listen(port, err => {

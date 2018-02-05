@@ -1,0 +1,11 @@
+.error-bg {
+  background: linear-gradient($error-bg, $error-bg), url('/images/404.jpg') center / cover no-repeat;
+  padding: 50px;
+  text-align: center;
+
+  .error {
+    color: $error-color;
+    font-size: 4em;
+    margin: 20vh auto 0;
+  }
+}
