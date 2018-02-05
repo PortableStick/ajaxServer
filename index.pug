@@ -7,7 +7,7 @@ html(lang='en')
     link(href='fa-solid.min.css', rel='stylesheet')
     link(href='style.css', rel='stylesheet')
   body
-    .container-fluid.background.groupo
+    .container-fluid.background.bottom-space
       h1.main-title.text-rammetto.text-shadow A  J  A  X
       .row.text-roboto.button-container
         button#sameDomain.btn.shadow(type='button') Same Origin
@@ -30,6 +30,4 @@ html(lang='en')
     script(src='handlebars-v4.0.11.js')
     script(src='script.js')
     script init("#{apiUrl}")
-    .footer.full-row.text-rammetto
-      .copyright © 2018 Gregory Smith
-      .terms Some stuff here
+    include footer.pug

@@ -15,6 +15,7 @@ $black-70: rgba(0, 0, 0, 0.7);
 $black-75: rgba(0,0,0,0.75);
 $dark-amber: rgba(37, 26, 12, 0.46);
 $really-dark-orange: rgba(37, 26, 12, 0.46);
+$error-yellow: #FCFBD3;
 
 /****
 * Assignments
@@ -25,7 +26,7 @@ $main-title-text-color: $white;
 $cat-container-bg: $yellow;
 $footer-bg: $light-green;
 $header-bg: $light-green;
-$error-bg: $yellow;
+$error-bg: $error-yellow;
 $text-color: $white;
 $button-text-color: $white;
 $error-text-color: $dark-orange;
@@ -73,22 +74,23 @@ html, body {
 .container {
   margin: 0 auto;
   width: 70vw;
-  height: 100vh;
+  height: 100%;
 }
 
 .container-fluid {
   width: 100%;
   height: auto;
   min-height: 100vh;
-  padding-bottom: 10vh;
+  position: relative;
 }
 
 .cat-container {
   background-color: $cat-container-bg;
   border-left: 5px solid $cat-container-border-color;
   border-right: 5px solid $cat-container-border-color;
-  padding: 30px;
+  padding: 10px 30px 50px;
   color: $cat-container-text-color;
+  min-height: calc(100vh - 215px - 2em);
 }
 
 .main-title {
@@ -97,6 +99,10 @@ html, body {
   font-size: 4.3em;
   margin-bottom: 23px;
   margin-top: 0;
+}
+
+.bottom-space {
+  padding-bottom: 10vh;
 }
 
 .footer {
@@ -160,6 +166,7 @@ html, body {
   margin: 0;
   padding: 10px 30px;
   box-shadow: 0px 22px 28px -11px $black-75;
+  height: 215px;
 
   .cat-image {
     max-width: 200px;
