@@ -4,13 +4,19 @@ html(lang='en')
     meta(charset='UTF-8')
     title Meet #{name}
     link(href='https://fonts.googleapis.com/css?family=PT+Mono|Rammetto+One|Roboto', rel='stylesheet')
-    link(href='fa-solid.min.css', rel='stylesheet')
-    link(href='style.css', rel='stylesheet')
+    link(href='../fa-solid.min.css', rel='stylesheet')
+    link(href='../style.css', rel='stylesheet')
   body
-  h1.cat-name= name
-  h2.cat-headline= headline
-  img.cat-image(src= "/images/" + image, alt= "A picture of " + name)
-  div.cat-bio= bio
-  ul.cat-likes
-    each like in likes
-      li.cat-like= like
+    .container-fluid.background
+      .header
+        img.cat-image(src= "/images/" + image, alt= "A picture of " + name)
+        .text
+          h1.cat-name.text-rammetto= name
+          h2.cat-headline.text-roboto= headline
+      .container.cat-container
+        h4.bio-title.text-rammetto BIO
+        .cat-bio.text-roboto= bio
+        h4.like-title.text-rammetto LIKES
+        ul.cat-likes.text-roboto
+          each like in likes
+            li.cat-like= like
