@@ -2,42 +2,44 @@
 * Colors
 ****/
 
-$olive_green: #4F7561;
-$light_green: #5EC4A1;
+$olive-green: #4F7561;
+$light-green: #5EC4A1;
 $yellow: #EEC064;
 $peach: #FDA86A;
 $red: #DA4955;
 $white: #fff;
-$dark_orange: #A4762A;
+$dark-orange: #A4762A;
 $black: #000;
 $half-black: rgba(0, 0, 0, 0.5);
 $black-70: rgba(0, 0, 0, 0.7);
+$black-75: rgba(0,0,0,0.75);
 $dark-amber: rgba(37, 26, 12, 0.46);
-
+$really-dark-orange: rgba(37, 26, 12, 0.46);
 
 /****
 * Assignments
 ****/
 
-$main-bg: $olive_green;
+$main-bg: $olive-green;
 $main-title-text-color: $white;
 $cat-container-bg: $yellow;
-$footer-bg: $light_green;
-$header-bg: $light_green;
+$footer-bg: $light-green;
+$header-bg: $light-green;
 $error-bg: $yellow;
 $text-color: $white;
 $button-text-color: $white;
-$error-text-color: $dark_orange;
+$error-text-color: $dark-orange;
 $cat-container-border-color: $white;
 $cat-container-text-color: $white;
 $footer-text-color: $white;
 $cat-page-title-border-color: $white;
+$cat-color: $white;
 $header-border-color: $black;
 $cat-image-border-color: $white;
 $header-text-color: $white;
 $cat-text-bg: $half-black;
 $read-more-link-color: $white;
-$same-domain-button: $light_green;
+$same-domain-button: $light-green;
 $cross-domain-button: $yellow;
 $jsonp-button: $peach;
 $cors-button: $red;
@@ -76,7 +78,9 @@ html, body {
 
 .container-fluid {
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 100vh;
+  padding-bottom: 10vh;
 }
 
 .cat-container {
@@ -138,7 +142,7 @@ html, body {
 }
 
 .cat {
-  color: white;
+  color: $cat-color;
   margin: 10px 20px;
   overflow: hidden;
 
@@ -155,7 +159,7 @@ html, body {
   justify-content: space-between;
   margin: 0;
   padding: 10px 30px;
-  box-shadow: 0px 22px 28px -11px rgba(0,0,0,0.75);
+  box-shadow: 0px 22px 28px -11px $black-75;
 
   .cat-image {
     max-width: 200px;
@@ -253,28 +257,22 @@ html, body {
   width: 20%;
   font-size: 1.4em;
   border-radius: 2px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .text-shadow {
-  -webkit-text-shadow: 6px 6px 8px rgba(37, 26, 12, 0.46);
-  -moz-text-shadow: 6px 6px 8px rgba(37, 26, 12, 0.46);
-  text-shadow: 6px 6px 8px rgba(37, 26, 12, 0.46);
+  text-shadow: 6px 6px 8px $really-dark-orange;
 }
 
 .text-shadow-black {
-  -webkit-text-shadow: 6px 6px 8px rgba(37, 26, 12, 0.46);
-  -moz-text-shadow: 6px 6px 8px rgba(37, 26, 12, 0.46);
-  text-shadow: 6px 6px 8px rgba(0, 0, 0, 0.7);
+  text-shadow: 6px 6px 8px $black-70;
 }
 
 .shadow {
-  -webkit-box-shadow: 6px 6px 8px 0px rgba(37, 26, 12, 0.46);
-  -moz-box-shadow: 6px 6px 8px 0px rgba(37, 26, 12, 0.46);
-  box-shadow: 6px 6px 8px 0px rgba(37, 26, 12, 0.46);
-}
-
-.btn:hover {
-  cursor: pointer;
+  box-shadow: 6px 6px 8px 0px $really-dark-orange;
 }
 
 #sameDomain {
