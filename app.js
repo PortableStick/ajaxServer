@@ -37,7 +37,7 @@ app.get('/', (request, response) => {
 
 function allowCors(request, response, next) {
     response.set({
-    "Access-Control-Allow-Origin": mainUrl,
+    "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
   });
   next();
@@ -47,7 +47,7 @@ function allowCors(request, response, next) {
 app.get('/cats.json', (request, response) => {
   response.set({
     // disable cors
-    'Access-Control-Allow-Origin': 'notallowed.donotenter',
+    'Access-Control-Allow-Origin': apiUrl,
     'Access-Control-Allow-Headers': ''
   });
   response.json(cats);
